@@ -125,16 +125,28 @@ public class VPNActivity extends AppCompatActivity implements View.OnClickListen
             ProfileManager.clear();
 
             Profile profile1 = new Profile();
-            profile1.setHost("103.115.44.");
+            profile1.setHost("103.115.44.168");
             profile1.setIpv6(true);
             profile1.setMethod("aes-256-cfb");
-            profile1.setPassword("123");
+            profile1.setPassword("123456");
             profile1.setRemoteDns("8.8.8.8");
             profile1.setRemotePort(2444);
             profile1.setRoute("all");
             profile1.setUdpdns(false);
             profile1.setName("线路1");
             ProfileManager.createProfile(profile1);
+
+            Profile profile2 = new Profile();
+            profile2.setHost("199.247.28.183");
+            profile2.setIpv6(true);
+            profile2.setMethod("aes-256-cfb");
+            profile2.setPassword("czp,123");
+            profile2.setRemoteDns("8.8.8.8");
+            profile2.setRemotePort(1314);
+            profile2.setRoute("all");
+            profile2.setUdpdns(false);
+            profile2.setName("线路2");
+            ProfileManager.createProfile(profile2);
 
             Core.switchProfile(profile1.getId());
         } catch (SQLException e) {
