@@ -1,0 +1,51 @@
+<manifest package="com.mrd.news.vpn"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:dist="http://schemas.android.com/apk/distribution">
+
+    <dist:module dist:instant="true"/>
+
+    <uses-permission android:name="android.permission.NFC"/>
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false"/>
+
+    <application
+        android:name=".App">
+        <activity
+            android:name=".RouteSelectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/VpnTheme"/>
+        <activity
+            android:name=".VPNActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/VpnTheme">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="ss"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:scheme="ss"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,84 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+apply plugin: 'com.android.library'
+
+android {
+    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            ndkBuild {
+                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                arguments "-j${Runtime.runtime.availableProcessors()}"
+            }
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+}
+
+task goBuild(type: Exec) {
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        executable "cmd.exe"
+        args "/c", file("src/overture/make.bat").absolutePath , minSdkVersion
+    } else {
+        executable "sh"
+        args "-c", "src/overture/make.bash " + minSdkVersion
+    }
+}
+
+task goClean(type: Exec) {
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        executable "cmd.exe"
+        args "/c", file("src/overture/clean.bat").absolutePath
+    } else {
+        executable "sh"
+        args "-c", "src/overture/clean.bash"
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if ((task.name == 'generateJsonModelDebug' || task.name == 'generateJsonModelRelease')) {
+        task.dependsOn(goBuild)
+    }
+}
+
+dependencies {
+    api project(':plugin')
+    api "android.arch.work:work-runtime:$workVersion"
+    api 'com.android.support:preference-v14:28.0.0'
+    api "android.arch.persistence.room:runtime:$roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "android.arch.work:work-testing:$workVersion"
+    androidTestImplementation "android.arch.persistence.room:testing:$roomVersion"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

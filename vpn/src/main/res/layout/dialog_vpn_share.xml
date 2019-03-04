@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:text="免费获取流量"
+            android:textColor="@android:color/white"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:text="每成功邀请1人，赠200MB流量自动到账"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="17dp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/bg_white_corners10">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="扫描下载【新起点】"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/_363636"/>
+
+        <TextView
+                android:id="@+id/tv_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="您的邀请码 7625393"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/_999999"/>
+
+        <ImageView
+                android:id="@+id/iv_download_link"
+                android:layout_width="158dp"
+                android:layout_height="158dp"
+                android:layout_marginTop="10dp"/>
+
+        <TextView
+                android:id="@+id/tv_copy_link"
+                android:layout_width="156dp"
+                android:layout_height="34dp"
+                android:text="复制推广链接"
+                android:layout_marginTop="26dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColor="@color/_363636"
+                android:background="@drawable/bg_292929_corner15_stroke"/>
+
+        <TextView
+                android:id="@+id/tv_save_code"
+                android:layout_width="156dp"
+                android:layout_height="34dp"
+                android:text="保存二维码"
+                android:layout_marginBottom="23dp"
+                android:gravity="center"
+                android:layout_marginTop="14dp"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_292929_corner15"/>
+    </LinearLayout>
+</LinearLayout>

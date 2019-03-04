@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_stat">@color/material_primary_300</color>
+    <color name="_1B1A1F">#1B1A1F</color>
+    <color name="_1c1d20">#1c1d20</color>
+    <color name="_999999">#999999</color>
+    <color name="_009CFF">#009CFF</color>
+    <color name="_0068B7">#0068B7</color>
+    <color name="_363636">#363636</color>
+    <color name="_292929">#292929</color>
+    <color name="_dddddd">#dddddd</color>
+</resources>
