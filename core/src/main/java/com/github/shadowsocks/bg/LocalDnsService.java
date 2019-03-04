@@ -2,14 +2,18 @@ package com.github.shadowsocks.bg;
 
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
+
 import com.github.shadowsocks.Core;
 import com.github.shadowsocks.acl.Acl;
 import com.github.shadowsocks.database.Profile;
 import com.github.shadowsocks.preference.DataStore;
 import com.github.shadowsocks.utils.UtilsKt;
+
 import kotlin.io.FilesKt;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.Charsets;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
@@ -44,6 +48,7 @@ public class LocalDnsService {
                                 Executable.OVERTURE).getAbsolutePath());
                         list.add("-c");
                         list.add(buildOvertureConfig($this, "overture.conf"));
+                        Log.e("TAG", "startNativeProcesses:" + buildOvertureConfig($this, "overture.conf"));
                         data.getProcesses().start(buildAdditionalArguments($this, list), null);
                     } catch (JSONException e) {
                         e.printStackTrace();

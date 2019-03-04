@@ -15,6 +15,7 @@ import android.os.ParcelFileDescriptor;
 import android.support.v4.content.ContextCompat;
 import android.system.ErrnoException;
 import android.system.Os;
+import android.util.Log;
 
 import com.github.shadowsocks.Core;
 import com.github.shadowsocks.JniHelper;
@@ -292,6 +293,7 @@ public class VpnService extends android.net.VpnService implements LocalDnsServic
     }
 
     private int startVpn() {
+        Log.e("TAG","startVpn********");
         Profile profile = getData().getProxy().getProfile();
         android.net.VpnService.Builder builder = new android.net.VpnService.Builder()
                 .setConfigureIntent(Core.configureIntent.invoke(this))
@@ -435,6 +437,8 @@ public class VpnService extends android.net.VpnService implements LocalDnsServic
     }
 
     private void sendFd(int fd) throws ErrnoException{
+        Log.e("TAG","sendFd********");
+
         if (fd == -1) {
             try {
                 throw new IOException("Invalid fd (-1)");
