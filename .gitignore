@@ -11,4 +11,3 @@
 /build
 /captures
 .externalNativeBuild
-*.c linguist-language=Java
